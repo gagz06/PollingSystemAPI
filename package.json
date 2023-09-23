@@ -1,0 +1,19 @@
+{
+  "name": "pollingsystemapi",
+  "version": "1.0.0",
+  "description": "polling system api for skill test 3",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/gagz06/PollingSystemAPI.git"
+  },
+  "author": "Gagan",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/gagz06/PollingSystemAPI/issues"
+  },
+  "homepage": "https://github.com/gagz06/PollingSystemAPI#readme"
+}
