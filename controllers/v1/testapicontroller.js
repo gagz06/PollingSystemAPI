@@ -1,5 +1,5 @@
 module.exports.index = function (req,res) {
-    res.json(200,{
+    res.status(200).json({
         message: "API working"
     })
 }
