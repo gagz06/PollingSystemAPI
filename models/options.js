@@ -5,12 +5,13 @@ const optionsSchema = mongoose.Schema({
         type: String,
         required: true
     },
-    question:{
+    questionId:{
         type: mongoose.Schema.Types.ObjectId,
-        ref:'question'
+        ref:'question',
+        required:true
     },
     votes:{
-        type: Int32Array,
+        type: Number,
         default:0
     },
     link_to_vote: {
@@ -19,6 +20,7 @@ const optionsSchema = mongoose.Schema({
 },{
     timestamps: true
 });
+
 
 const Options = mongoose.model('options',optionsSchema);
 
