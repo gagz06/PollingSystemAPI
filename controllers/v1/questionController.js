@@ -1,21 +1,41 @@
 const questSchema = require("../../models/question");
 const optionSchema = require("../../models/options");
 
+module.exports.showAllQuestionsAndOptions = async function (req, res) {
+  try {
+    const quest = await questSchema
+      .find({})
+      .populate("options")
+      .select("_id title options");
+    if (quest) {
+      return res.status(200).json(quest);
+    } else {
+      return res.status(404).json({
+        message: "No Question found in DB ",
+      });
+    }
+  } catch (error) {
+    console.log(error);
+    return res.status(500).json({
+      message: error.message,
+    });
+  }
+};
+
 module.exports.fetchQuestionAndOptions = async function (req, res) {
   try {
     if (req.params.id) {
-        const quest = questSchema.findOne({_id:req.params.id}).populate("options");
-        if(quest){
-            
-            return res.status(200).json({
-                message:quest
-            });
-        }
-        else{
-            return res.status(404).json({
-                message: "Inavalid Question Id / Question not found",
-              });
-        }
+      const quest = await questSchema
+        .findOne({ _id: req.params.id })
+        .populate("options", "_id  text votes link_to_vote")
+        .select("_id title options _id  text votes link_to_vote");
+      if (quest) {
+        return res.status(200).json(quest);
+      } else {
+        return res.status(404).json({
+          message: "Inavalid Question Id / Question not found",
+        });
+      }
     } else {
       return res.status(403).json({
         message: "Question id cannot be blank",
@@ -51,7 +71,7 @@ module.exports.deleteQuestion = async function (req, res) {
         await optionSchema.deleteMany({ questionId: quest._id });
         await questSchema.deleteOne(quest._id);
         return res.status(200).json({
-          message: "Question and its options deleted succesfully",
+          message: "Question deleted successfully",
         });
       } else {
         return res.status(404).json({
@@ -72,10 +92,10 @@ module.exports.deleteQuestion = async function (req, res) {
 };
 module.exports.createQuestion = function (req, res) {
   try {
-    if (req.body.question) {
+    if (req.body.title) {
       questSchema
         .create({
-          title: req.body.question,
+          title: req.body.title,
         })
         .then((quest) => {
           return res.status(200).json({
