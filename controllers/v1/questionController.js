@@ -132,12 +132,12 @@ module.exports.createQuestion = function (req, res) {
 module.exports.createOption = async function (req, res) {
   try {
     if (req.params.id) {
-      if (req.body.text) {
+      if (req.body.title) {
         const questionId = req.params.id;
         const question = await questSchema.findById(questionId);
         if (question) {
           const option = await optionSchema.create({
-            text: req.body.text,
+            text: req.body.title,
             questionId: questionId,
           });
 
