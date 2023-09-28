@@ -1,15 +1,26 @@
+// Import the Express.js framework
 const express = require("express");
+
+// Create a router instance to define question-related routes
 const router = express.Router();
+
+// Import the questionController, which likely contains route handling functions
 const questionController = require("../../../controllers/v1/questionController");
 
-//Get list of all questions
+// Route to get a list of all questions and their options
 router.get("/", questionController.showAllQuestionsAndOptions);
-//Creating new question
+
+// Route to create a new question
 router.post("/create", questionController.createQuestion);
-// creating new option for question
+
+// Route to create a new option for a question (identified by :id)
 router.post("/:id/options/create", questionController.createOption);
-//delete question
+
+// Route to delete a question (identified by :id)
 router.delete("/:id/delete", questionController.deleteQuestion);
-// to view question and its options
+
+// Route to view a question and its options (identified by :id)
 router.get("/:id", questionController.fetchQuestionAndOptions);
+
+// Export the router so it can be used in other parts of the application
 module.exports = router;

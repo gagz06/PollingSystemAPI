@@ -1,0 +1,48 @@
+# Polling System API
+
+This is a Node.js-based API for a polling system. It allows users to create questions with options and vote on those options. This API is designed to be open and does not require authentication.
+
+## Table of Contents
+
+- [Project Structure](#project-structure)
+- [Setup](#setup)
+- [API Endpoints](#api-endpoints)
+- [Usage](#usage)
+- [Optional Features](#optional-features)
+- [Contributing](#contributing)
+- [License](#license)
+
+---
+
+## Project Structure
+
+The project follows a scalable folder structure:
+
+controllers/v1/
+questionController.js
+optionsController.js
+models/
+question.js
+option.js
+routes/api/v1/
+questions.js
+options.js
+index.js (main application file)
+.env (for environment variables)
+package.json
+README.md
+
+API Endpoints
+api/v1/questions/:  To view list of all the questions
+api/v1/questions/create: Create a new question.
+api/v1/questions/:id/options/create: Add options to a specific question.
+api/v1/questions/:id/delete: Delete a question.
+api/v1/options/:id/delete: Delete an option.
+api/v1/options/:id/add_vote: Increment the vote count for an option.
+api/v1/questions/:id: View a question and its options.
+
+Usage
+You can interact with the API using a tool like Postman or by making HTTP requests from your application. Refer to the API endpoints section for details on each route.
+
+Contributing
+Contributions are welcome! Feel free to open issues or submit pull requests to improve this project.

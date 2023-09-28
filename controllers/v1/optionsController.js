@@ -1,6 +1,7 @@
 const questSchema = require("../../models/question");
 const optionSchema = require("../../models/options");
 
+// Helper function to handle errors and send a JSON response
 module.exports.deleteOption = async function (req, res) {
   try {
     if (req.params.id) {
@@ -35,12 +36,13 @@ module.exports.deleteOption = async function (req, res) {
   }
 };
 
+// Controller function to add a vote to an option
 module.exports.addVoteToOption = async function (req, res) {
   try {
     if (req.params.id) {
       const option = await optionSchema.findById(req.params.id);
       if (option) {
-        option.votes = option.votes + 1;
+        option.votes += 1;
         option.save();
         return res.status(200).json({
           message: "Vote added successfully",
